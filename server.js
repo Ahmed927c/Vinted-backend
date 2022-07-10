@@ -4,9 +4,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 //connexion à la bdd
-mongoose.connect("mongodb://localhost/Vinted-orion22");
 mongoose.connect(process.env.MONGODB_URL);
-const app = express();
+
 app.use(express.json());
 app.use(cors());
 app.get("/", (req, res) => {
