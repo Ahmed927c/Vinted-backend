@@ -5,11 +5,13 @@ const cors = require("cors");
 
 //connexion à la bdd
 mongoose.connect("mongodb://localhost/Vinted-orion22");
-
+mongoose.connect(process.env.MONGODB_URL);
 const app = express();
 app.use(express.json());
 app.use(cors());
-
+app.get("/", (req, res) => {
+  res.json("Welcome on Vinted Api ! 🎉");
+});
 //import des routes users et offers
 const usersRoutes = require("./routes/users");
 app.use(usersRoutes);
@@ -20,6 +22,6 @@ app.all("*", (req, res) => {
   res.status(400).json("Route introuvable");
 });
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server has started ! 🤙");
 });
