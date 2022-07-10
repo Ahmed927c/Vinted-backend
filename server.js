@@ -1,10 +1,11 @@
-require("dotenv").config();
+require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
 //connexion à la bdd
-mongoose.connect(process.env.MONGODB_URI);
+
+mongoose.connect(process.env.MONGODB_URL);
 const app = express();
 app.use(express.json());
 app.use(cors());
